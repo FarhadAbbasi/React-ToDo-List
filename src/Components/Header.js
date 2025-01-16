@@ -25,13 +25,13 @@ function Header({ children }) {
 
         <div className=" mx-2">
           <p className="mx-1 text-black text-sm font-semibold"> Tuesday</p>
-          <p className="mx-1 text-blue-400 text-sm font-semibold"> 20/01/2025</p>
+          <p className="mx-1 text-blue-700 text-sm font-semibold"> 20/01/2025</p>
         </div>
 
-        {/* <nav>
-          <Link to='/' className="p-3 m-5 rounded bg-indigo-800/20 hover:bg-indigo-800 font-semibold "> Task List  </Link>
-          <Link to='/supa/express' className="p-3 m-5 rounded bg-indigo-800/20 hover:bg-indigo-800 font-semibold "> Movies  </Link>
-        </nav> */}
+        {/* <nav> */}
+          {/* <Link to='/' className="p-3 m-5 rounded bg-indigo-800/20 hover:bg-indigo-800 font-semibold "> Task List  </Link> */}
+          {/* <Link to='/supa/express' className="p-3 m-5 rounded bg-indigo-800/20 hover:bg-indigo-800 font-semibold "> Movies  </Link> */}
+        {/* </nav> */}
 
       </div>
 

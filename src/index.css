@@ -8,6 +8,7 @@
 body {
 /* background-color: azure; */
 background-color: white;
+overflow: hidden;
 }
 .App {
   text-align: center;
