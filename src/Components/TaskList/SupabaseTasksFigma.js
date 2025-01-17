@@ -92,7 +92,10 @@ function SupabaseTasksFigma() {
         }
     }
 
-    useEffect(() => (getData), [URL]);
+    useEffect(() => {
+        getData();
+    }, [URL]);
+    
 
     //----------------------------------- Express Server Fetching Ends -------------------------------------->>
 
