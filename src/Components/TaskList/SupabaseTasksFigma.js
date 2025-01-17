@@ -15,7 +15,6 @@ function SupabaseTasksFigma() {
     const [isFetching, setFetching] = useState(false);
     const [isUpload, setUpload] = useState(false);
     const [taskDetails, setTaskDetials] = useState(null);
-    const BASE_URL = 'http://100.29.21.213:3000';
 
 
     //----------------------------------- Supabase Fetching Starts -------------------------------------->>
@@ -63,12 +62,15 @@ function SupabaseTasksFigma() {
 
     //----------------------------------- Express Server Fetching Starts -------------------------------------->>
 
-    console.log("ENV URL: ",process.env.SERVER_URL);
+    const BASE_URL = process.env.REACT_APP_SERVER_URL;
+    console.log("ENV URL:", BASE_URL);
     
-    const URL = `${BASE_URL}/supabase/tasks`;
+    // const BASE_URL = 'http://100.29.21.213:3000';
     // const URL = "http://localhost:3000/supabase/tasks";
     // const URL = "http://localhost:3000/supabase/movies";
     // const URL = "http://localhost:3000/movies";
+    
+    const URL = `${BASE_URL}/supabase/tasks`;
     const [data, setData] = useState([]);
 
     const getData = async () => {
@@ -146,19 +148,19 @@ function SupabaseTasksFigma() {
                 <nav className="mt-10 bg-red-400 rounded-r flex-grow flex-shrink flex-basis-[100%] ">
 
                     <div className="flex">
-                        <button className='m-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end' 
-                        onClick={() => setUpload(!isUpload)}> <MdAdd className="mx-1 text-2xl" /> List </button>
-                        <button className='m-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end' 
-                        onClick={() => addTask()}> <MdAdd className="mx-1 text-2xl" />  Task </button>
+                        <button className='m-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end'
+                            onClick={() => setUpload(!isUpload)}> <MdAdd className="mx-1 text-2xl" /> List </button>
+                        <button className='m-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end'
+                            onClick={() => addTask()}> <MdAdd className="mx-1 text-2xl" />  Task </button>
                     </div>
 
-                    {isUpload && 
-                    <form className="bg-white rounded-xl border border-red-200 shadow fixed"
-                        action="http://localhost:3000/upload/supabase/tasks" method="POST" encType="multipart/form-data">
-                        <input type="file" name="file" accept=".csv" />
-                        <label> Upload only .csv file</label>
-                        <button className= 'm-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end'> Upload List </button>
-                    </form>
+                    {isUpload &&
+                        <form className="bg-white rounded-xl border border-red-200 shadow fixed"
+                            action="http://localhost:3000/upload/supabase/tasks" method="POST" encType="multipart/form-data">
+                            <input type="file" name="file" accept=".csv" />
+                            <label> Upload only .csv file</label>
+                            <button className='m-5 p-2 bg-red-400 text-white font-bold flex rounded-lg shadow-lg border border-red-100  hover:bg-white hover:text-red-400 justify-self-end'> Upload List </button>
+                        </form>
                     }
 
 
