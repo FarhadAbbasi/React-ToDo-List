@@ -15,6 +15,7 @@ function SupabaseTasksFigma() {
     const [isFetching, setFetching] = useState(false);
     const [isUpload, setUpload] = useState(false);
     const [taskDetails, setTaskDetials] = useState(null);
+    const BASE_URL = 'http://100.29.21.213:3000';
 
 
     //----------------------------------- Supabase Fetching Starts -------------------------------------->>
@@ -62,7 +63,10 @@ function SupabaseTasksFigma() {
 
     //----------------------------------- Express Server Fetching Starts -------------------------------------->>
 
-    const URL = "http://localhost:3000/supabase/tasks";
+    console.log("ENV URL: ",process.env.SERVER_URL);
+    
+    const URL = `${BASE_URL}/supabase/tasks`;
+    // const URL = "http://localhost:3000/supabase/tasks";
     // const URL = "http://localhost:3000/supabase/movies";
     // const URL = "http://localhost:3000/movies";
     const [data, setData] = useState([]);
@@ -149,7 +153,7 @@ function SupabaseTasksFigma() {
                     </div>
 
                     {isUpload && 
-                    <form className="bg-red-500/40 rounded"
+                    <form className="bg-white rounded-xl border border-red-200 shadow fixed"
                         action="http://localhost:3000/upload/supabase/tasks" method="POST" encType="multipart/form-data">
                         <input type="file" name="file" accept=".csv" />
                         <label> Upload only .csv file</label>
@@ -190,7 +194,7 @@ function SupabaseTasksFigma() {
 
                     ----------------------- Task Table Content ----------------------------- */}
 
-                    {supaTaskData?.map((task) => (
+                    {data?.map((task) => (
                         <div className="m-3 hover:bg-yellow-100/20 shadow rounded border">
 
                             <li className="mx-4 flex flex-col justify-stretch" key={task.id} onClick={() => setTaskDetials(task)} >
