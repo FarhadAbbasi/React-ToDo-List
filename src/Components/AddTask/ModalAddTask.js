@@ -16,6 +16,8 @@ function ModalAddTask({ isModalOpen, setIsModalOpen, action, id }) {
   const [name, setName] = useState('');
   const [description, setDesc] = useState('');
   const [date, setDate] = useState('');
+  // const [priority, setPriority] = useState('');
+  // const [status, setStatus] = useState('');
   const [formError, setFormError] = useState('');
 
   const handleAdd = () => {

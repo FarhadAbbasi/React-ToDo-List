@@ -392,3 +392,318 @@ ubuntu@ip-172-31-24-14:~/My_Express_Server$ pm2 list
 │ 1  │ React-ToDo-App     │ fork     │ 15   │ errored   │ 0%       │ 0b       │	>> THIS APP IS NOT RUNNING BECAUSE BOTH APP ARE ASSIGNED THE SAME PORT :3000 BUT ONLY ONE OF THEM CAN USE IT.
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ubuntu@ip-172-31-24-14:~/My_Express_Server$
+
+
+
+
+
+
+//---------------------------------------------------- AWS Ec-2 SSL Certification  ----------------------------------------------------->>
+
+
+
+Microsoft Windows [Version 10.0.19045.5247]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Work\OneDrive\Documents\GitHub\ExpressServer>ssh -i "React_ToDo_App_Key.pem" ubuntu@ec2-100-29-21-213.compute-1.amazonaws.com
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-1021-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue Jan 21 12:42:46 UTC 2025
+
+  System load:  0.0               Processes:             109
+  Usage of /:   40.8% of 6.71GB   Users logged in:       0
+  Memory usage: 37%               IPv4 address for enX0: 172.31.24.14
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+5 updates can be applied immediately.
+5 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Tue Jan 21 08:26:01 2025 from 154.192.137.19
+ubuntu@ip-172-31-24-14:~$ Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-1021-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue Jan 21 12:42:46 UTC 2025
+
+  System load:  0.0               Processes:             109
+  Usage of /:   40.8% of 6.71GB   Users logged in:       0
+  Memory usage: 37%               IPv4 address for enX0: 172.31.24.14
+  Swap usage:   0%
+
+ * Ubuntu Pro delivers the most comprehensive open source security and
+   compliance features.
+
+   https://ubuntu.com/aws/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+5 updates can be applied immediately.
+5 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+Last login: Tue Jan 21 08:26:01 2025 from 154.192.137.19
+ubuntu@ip-172-31-24-14:~$
+ubuntu@ip-172-31-24-14:~$ sudo apt install openssl
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+openssl is already the newest version (3.0.13-0ubuntu3.4).
+openssl set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.
+ubuntu@ip-172-31-24-14:~$ sudo systemctl status nginx
+Unit nginx.service could not be found.
+ubuntu@ip-172-31-24-14:~$ sudo systemctl status apache2
+Unit apache2.service could not be found.
+ubuntu@ip-172-31-24-14:~$ dpkg -l | grep apache
+ubuntu@ip-172-31-24-14:~$ dpkg -l | grep nginx
+ubuntu@ip-172-31-24-14:~$ sudo apt install -y apache2-utils
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libapr1t64 libaprutil1t64
+The following NEW packages will be installed:
+  apache2-utils libapr1t64 libaprutil1t64
+0 upgraded, 3 newly installed, 0 to remove and 8 not upgraded.
+Need to get 297 kB of archives.
+After this operation, 907 kB of additional disk space will be used.
+Get:1 http://us-east-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 libapr1t64 amd64 1.7.2-3.1ubuntu0.1 [108 kB]
+Get:2 http://us-east-1.ec2.archive.ubuntu.com/ubuntu noble/main amd64 libaprutil1t64 amd64 1.6.3-1.1ubuntu7 [91.9 kB]
+Get:3 http://us-east-1.ec2.archive.ubuntu.com/ubuntu noble-updates/main amd64 apache2-utils amd64 2.4.58-1ubuntu8.5 [97.1 kB]
+Fetched 297 kB in 0s (13.2 MB/s)
+Selecting previously unselected package libapr1t64:amd64.
+(Reading database ... 109202 files and directories currently installed.)
+Preparing to unpack .../libapr1t64_1.7.2-3.1ubuntu0.1_amd64.deb ...
+Unpacking libapr1t64:amd64 (1.7.2-3.1ubuntu0.1) ...
+Selecting previously unselected package libaprutil1t64:amd64.
+Preparing to unpack .../libaprutil1t64_1.6.3-1.1ubuntu7_amd64.deb ...
+Unpacking libaprutil1t64:amd64 (1.6.3-1.1ubuntu7) ...
+Selecting previously unselected package apache2-utils.
+Preparing to unpack .../apache2-utils_2.4.58-1ubuntu8.5_amd64.deb ...
+Unpacking apache2-utils (2.4.58-1ubuntu8.5) ...
+Setting up libapr1t64:amd64 (1.7.2-3.1ubuntu0.1) ...
+Setting up libaprutil1t64:amd64 (1.6.3-1.1ubuntu7) ...
+Setting up apache2-utils (2.4.58-1ubuntu8.5) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.3) ...
+Scanning processes...
+Scanning linux images...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+
+
+
+
+
+ubuntu@ip-172-31-24-14:~$ sudo systemctl status apache2
+Unit apache2.service could not be found.
+ubuntu@ip-172-31-24-14:~$ dpkg -l | grep apache
+ii  apache2-utils                                    2.4.58-1ubuntu8.5                         amd64        Apache HTTP Server (utility programs for web servers)
+ubuntu@ip-172-31-24-14:~$ sudo mkdir /etc/ssl/private
+mkdir: cannot create directory ‘/etc/ssl/private’: File exists
+ubuntu@ip-172-31-24-14:~$ sudo mkdir /etc/ssl/certs
+mkdir: cannot create directory ‘/etc/ssl/certs’: File exists
+ubuntu@ip-172-31-24-14:~$ cd My_Express_Server
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo systemctl status nginx
+Unit nginx.service could not be found.
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo systemctl status apache2
+Unit apache2.service could not be found.
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ dpkg -l | grep nginx
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ dpkg -l | grep apache
+ii  apache2-utils                                    2.4.58-1ubuntu8.5                         amd64        Apache HTTP Server (utility programs for web servers)
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo mkdir /etc/ssl/private
+mkdir: cannot create directory ‘/etc/ssl/private’: File exists
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo mkdir /etc/ssl/certs
+mkdir: cannot create directory ‘/etc/ssl/certs’: File exists
+
+
+
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt -days 365
+....+.+.....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*......+.+......+.....+.+..+......+......+.........+.......+...+..+.........+...+.+.........+..+....+.....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.....+..+.......+..............+.+.........+.....+....+..+....+...............+..+.......+..+.+..+..........+......+..+.........+...+.......+...+..+....+.....+....+.....+.....................+.........+...............+...+.......+...+...+.................+............+...+.......+...........+.+...+............+......+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+.+.+...+............+.........+..+............+.+..+.......+..+.............+......+..+....+.....................+..+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*...+........+.+.....................+..+...+...+.+.....+.........+....+...+........+....+..+....+......+........+.+..+............+............+.+...+...........+.............+...+..+.......+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*..+........+....+...+..................+...+...........+.+.....+..........+............+...+..+.+..+..................+.........+...+.........+................+.....+.......+.....+......+......+................+.................+.............+..+.+.....+.+......+.........+.........+..+....+...+..+..........+...+........+...+....+..+..........+...+.....+.............+..+.+..+...+.+.....+.+...............+...............+...............+........+.........+.......+..............+.+........+.+.....+.+.........+............+.....+....+........+............+.............+..+....+......+...+...........+....+...+...+.........+...........+.+...............+.............................+.........+.......+..............+..........+......+........+......+...........................+...+....+..+................+.....+......................+...+..+.+.....................+.....+.............+..+.+..+...+....+...+...+..............+....+..+....+.....+................+...+.....+.......+..+.+............+.....+...+......+......+....+...+.....................+.........+..+...+.+..+...+...............................+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Enter PEM pass phrase:
+4057CA09787E0000:error:14000065:UI routines:UI_set_result_ex:result too small:../crypto/ui/ui_lib.c:888:You must type in 4 to 1024 characters
+4057CA09787E0000:error:1400006B:UI routines:UI_process:processing error:../crypto/ui/ui_lib.c:548:while reading strings
+4057CA09787E0000:error:0480006D:PEM routines:PEM_def_callback:problems getting password:../crypto/pem/pem_lib.c:62:
+4057CA09787E0000:error:07880109:common libcrypto routines:do_ui_passphrase:interrupted or cancelled:../crypto/passphrase.c:184:
+4057CA09787E0000:error:1C80009F:Provider routines:p8info_to_encp8:unable to get passphrase:../providers/implementations/encode_decode/encode_key2any.c:116:
+
+
+
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo openssl req -x509 -nodes -newkey rsa:4096 -keyout /etc/ssl/private/server.key -out /etc/ssl/certs/server.crt -days 365
+.+...+..+...+...+......+......+.......+...+...+..+....+.....+....+..............+......+......+.+........+.+.....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*......+...+...........+.......+........+....+..+.+..+.+.........+...........+.+........+.+.....+....+..+...................+..+...+............+....+.....+......+...+............+.......+..+......+...+.+...+...+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.+.......+...........+.+.........+......+.....+...+.+...........+.+.....+....+........+.........................+..+...+...+.......+...........+.........+......+.+...+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+.....+.+........+......+...................+........+...+....+.................+...+.+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*...+....+..+.+........+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*.....+.........+...+.......+........+...+.......+.................+.......+...........+............+............+.+.................+...+....+...+......+..+...+......+......+............................+......+...+..+...............+...+.+.........+.....+.......+.....................+.........+...+...........+.........+......+..........+.....................+........+...+...+....+...+...........................+..+....+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:California
+Locality Name (eg, city) []:Los Angeles
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:ESForge
+Organizational Unit Name (eg, section) []:Software
+Common Name (e.g. server FQDN or YOUR name) []:AWS Express Server
+Email Address []:abbasiali336@gmail.com
+
+
+
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ ls /etc/ssl/private/server.key
+ls: cannot access '/etc/ssl/private/server.key': Permission denied
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ ls /etc/ssl/certs/server.crt
+/etc/ssl/certs/server.crt
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo ls -l /etc/ssl/private/server.key
+-rw------- 1 root root 3272 Jan 21 12:55 /etc/ssl/private/server.key
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo nano /etc/apache2/sites-available/default-ssl.conf
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo nano /etc/apache2/sites-available/default-ssl.conf
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ ubuntu@ip-172-31-24-14:~/My_Express_Server$ cd ..
+ubuntu@ip-172-31-24-14:~$ cd My_Express_Server
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo ls -l /etc/ssl/certs/server.crt
+-rw-r--r-- 1 root root 2191 Jan 21 12:58 /etc/ssl/certs/server.crt
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo nano /etc/apache2/sites-available/default-ssl.conf
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo systemctl status apache2
+Unit apache2.service could not be found.
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ sudo systemctl status nginx
+Unit nginx.service could not be found.
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ dir
+EC2\ CMD\ Code.txt  React_ToDo_App_Key.pem  app.js   demoserver.js  movies.csv    package-lock.json  server.js
+NewPage.html        SupabaseClient.js       data.js  index.html     node_modules  package.json       uploads
+ubuntu@ip-172-31-24-14:~/My_Express_Server$
+
+
+//-------------------------------------------------->>
+
+
+ubuntu@ip-172-31-24-14:~$
+ubuntu@ip-172-31-24-14:~$ cd ~/My_Express_Server
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git remote -v
+origin  https://github.com/FarhadAbbasi/My_Express_Server.git (fetch)
+origin  https://github.com/FarhadAbbasi/My_Express_Server.git (push)
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git pulll
+git: 'pulll' is not a git command. See 'git --help'.
+
+The most similar command is
+        pull
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git pull
+remote: Enumerating objects: 8, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 6 (delta 4), reused 4 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (6/6), 1.45 KiB | 370.00 KiB/s, done.
+From https://github.com/FarhadAbbasi/My_Express_Server
+   79d625c..8396ee6  main       -> origin/main
+Auto-merging server.js
+Merge made by the 'ort' strategy.
+ NewPage.html => NewPageNameUpdated.html |  0
+ server.js                               | 46 ++++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 44 insertions(+), 2 deletions(-)
+ rename NewPage.html => NewPageNameUpdated.html (100%)
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ dir
+EC2\ CMD\ Code.txt       React_ToDo_App_Key.pem  app.js   demoserver.js  movies.csv    package-lock.json  server.js
+NewPageNameUpdated.html  SupabaseClient.js       data.js  index.html     node_modules  package.json       uploads
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ cat server.js
+
+
+
+//-------------------------------------------------->>
+
+
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git push
+Username for 'https://github.com': FarhadAbbasi
+Password for 'https://FarhadAbbasi@github.com':
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/FarhadAbbasi/My_Express_Server.git/'
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git pull
+Already up to date.
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ dir
+EC2\ CMD\ Code.txt       React_ToDo_App_Key.pem  app.js   demoserver.js  movies.csv    package-lock.json  server.js
+NewPageNameUpdated.html  SupabaseClient.js       data.js  index.html     node_modules  package.json       uploads
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ cat index.html
+<!DOCTYPE html>
+
+<body>
+    <div style="background-color: aquamarine;">
+        <h1> Hellooo HTML</h1>
+
+        <form action="http://localhost:3000/upload-csv" method="POST" encType="multipart/form-data">
+            <input type="file" name="file" accept=".csv"/> <br/><br/>
+            <button> Send File </button>
+        </form>
+</div>
+</body>ubuntu@ip-172-31-24-14:~/My_Express_Server$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 400 bytes | 200.00 KiB/s, done.
+From https://github.com/FarhadAbbasi/My_Express_Server
+   8396ee6..83a5f52  main       -> origin/main
+Merge made by the 'ort' strategy.
+ index.html | 2 +- index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+ubuntu@ip-172-31-24-14:~/My_Express_Server$ cat index.html
+<!DOCTYPE html>
+
+<body>
+    <div style="background-color: aquamarine; padding: 20px; border-radius: 10px;">
+        <h1> Hellooo HTML</h1>
+
+        <form action="http://localhost:3000/upload-csv" method="POST" encType="multipart/form-data">
+            <input type="file" name="file" accept=".csv"/> <br/><br/>
+            <button> Send File </button>
+        </form>
+</div>
+</body>ubuntu@ip-172-31-24-14:~/My_Express_Server$
+//---------------------------------------------------- AWS Ec-2 SSL Certification    ENDS    ----------------------------------------------------->>
+
+
+
+
+
+
